@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ============================================
+     OCTAVE OS DESIGN SYSTEM
+     Dark-first. Warm neutrals. Cosmic accents.
+     ============================================ */
+
+  :root {
+    --radius: 0.75rem;
+  }
+
+  /* DARK MODE (default) */
+  .dark,
+  :root {
+    --background: 230 20% 7%;
+    --foreground: 40 10% 92%;
+
+    --card: 230 18% 11%;
+    --card-foreground: 40 10% 92%;
+
+    --muted: 230 15% 18%;
+    --muted-foreground: 230 10% 55%;
+
+    --border: 230 15% 15%;
+    --input: 230 15% 15%;
+    --ring: 251 39% 50%;
+
+    /* Cosmic — the magic accent */
+    --cosmic: 251 39% 42%;
+    --cosmic-glow: 251 60% 65%;
+
+    /* Golden — action & energy */
+    --golden: 38 90% 55%;
+
+    /* Destructive */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Energy octaves */
+    --energy-high: 38 90% 55%;
+    --energy-medium: 251 39% 55%;
+    --energy-low: 200 60% 50%;
+    --energy-recovery: 160 50% 45%;
+  }
+
+  /* LIGHT MODE (variant) */
+  .light {
+    --background: 40 20% 97%;
+    --foreground: 230 15% 12%;
+
+    --card: 40 15% 94%;
+    --card-foreground: 230 15% 12%;
+
+    --muted: 40 10% 88%;
+    --muted-foreground: 230 10% 45%;
+
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
+    --ring: 251 39% 50%;
+
+    --cosmic: 251 39% 42%;
+    --cosmic-glow: 251 50% 55%;
+    --golden: 38 85% 48%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+
+    --energy-high: 38 85% 48%;
+    --energy-medium: 251 35% 48%;
+    --energy-low: 200 55% 42%;
+    --energy-recovery: 160 45% 38%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: hsl(251 39% 42% / 0.3);
+  }
+
+  /* Scrollbar styling (dark mode) */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(230 15% 25%);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(230 15% 35%);
+  }
+}
+
+@layer utilities {
+  /* Glass card effect — used sparingly for cosmic moments */
+  .glass {
+    background: hsl(var(--card) / 0.6);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Cosmic gradient — for directive cards, orb, transit highlights */
+  .cosmic-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(251 30% 15% / 0.9),
+      hsl(251 25% 12% / 0.95)
+    );
+    border: 1px solid hsl(var(--cosmic) / 0.15);
+  }
+
+  /* Subtle ambient glow */
+  .cosmic-glow {
+    box-shadow:
+      0 0 20px hsl(var(--cosmic-glow) / 0.1),
+      0 0 40px hsl(var(--cosmic-glow) / 0.05);
+  }
+
+  /* Golden action glow — for primary CTAs */
+  .golden-glow {
+    box-shadow:
+      0 0 15px hsl(var(--golden) / 0.2),
+      0 0 30px hsl(var(--golden) / 0.1);
+  }
+
+  /* Text gradient for special headings */
+  .text-cosmic-gradient {
+    background: linear-gradient(135deg, hsl(var(--cosmic-glow)), hsl(var(--golden)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Energy octave indicators */
+  .energy-high {
+    color: hsl(var(--energy-high));
+    background: hsl(var(--energy-high) / 0.1);
+    border-color: hsl(var(--energy-high) / 0.3);
+  }
+
+  .energy-medium {
+    color: hsl(var(--energy-medium));
+    background: hsl(var(--energy-medium) / 0.1);
+    border-color: hsl(var(--energy-medium) / 0.3);
+  }
+
+  .energy-low {
+    color: hsl(var(--energy-low));
+    background: hsl(var(--energy-low) / 0.1);
+    border-color: hsl(var(--energy-low) / 0.3);
+  }
+
+  .energy-recovery {
+    color: hsl(var(--energy-recovery));
+    background: hsl(var(--energy-recovery) / 0.1);
+    border-color: hsl(var(--energy-recovery) / 0.3);
+  }
+
+  /* Label style — used for section headers throughout the app */
+  .label-upper {
+    @apply text-[11px] font-semibold tracking-[0.08em] uppercase text-muted-foreground;
+  }
+}
